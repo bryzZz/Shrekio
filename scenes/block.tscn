@@ -1,0 +1,97 @@
+[gd_scene load_steps=8 format=3 uid="uid://cs6lh77ovq0xs"]
+
+[ext_resource type="Script" path="res://scripts/block.gd" id="1_ov8oe"]
+[ext_resource type="Texture2D" uid="uid://cwismqa85vkb0" path="res://assets/block.png" id="2_h8bxf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5tsr4"]
+size = Vector2(64, 64)
+
+[sub_resource type="QuadMesh" id="QuadMesh_wjbbl"]
+size = Vector2(16, 16)
+
+[sub_resource type="Animation" id="Animation_pr2pv"]
+resource_name = "coin"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Coin:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 0, 0), Color(1, 1, 0, 1), Color(1, 1, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Coin:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -24), Vector2(0, -100)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Coin:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 3.14159]
+}
+
+[sub_resource type="Animation" id="Animation_jpppd"]
+resource_name = "hit"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Block:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -10), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5vkss"]
+_data = {
+"coin": SubResource("Animation_pr2pv"),
+"hit": SubResource("Animation_jpppd")
+}
+
+[node name="Block" type="StaticBody2D"]
+script = ExtResource("1_ov8oe")
+
+[node name="Block" type="Sprite2D" parent="."]
+texture = ExtResource("2_h8bxf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5tsr4")
+
+[node name="Coin" type="MeshInstance2D" parent="."]
+modulate = Color(1, 1, 0, 0)
+position = Vector2(0, -100)
+rotation = 3.14159
+mesh = SubResource("QuadMesh_wjbbl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5vkss")
+}
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5vkss")
+}
