@@ -37,14 +37,6 @@ func _physics_process(delta):
 #		sprite.scale.x = -1.0
 	
 	move_and_slide()
-#	var collision = get_last_slide_collision()
-#	if collision:
-#		var normal = collision.get_normal()
-#		if normal.x == -1 and direction == 1:
-#			direction = -1
-#		if normal.x == 1 and direction == -1:
-#			direction = 1
-
 
 func apply_graviry(delta):
 	if not is_on_floor():

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://14hlcjs8acga"]
+
+[ext_resource type="Script" path="res://scripts/Wand.gd" id="1_f8vnl"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_syqju"]
+size = Vector2(4, 30)
+
+[node name="Wand" type="Node2D"]
+script = ExtResource("1_f8vnl")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(0, -15)
+mesh = SubResource("QuadMesh_syqju")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, -27)

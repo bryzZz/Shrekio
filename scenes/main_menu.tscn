@@ -1,0 +1,120 @@
+[gd_scene load_steps=8 format=3 uid="uid://do0yo0o8g88jv"]
+
+[ext_resource type="Texture2D" uid="uid://2d3cmh4vgw4g" path="res://assets/1.png" id="1_nl57x"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_qlasu"]
+[ext_resource type="Texture2D" uid="uid://bryhnikil5pb0" path="res://assets/2.png" id="2_lxac5"]
+[ext_resource type="Texture2D" uid="uid://cgl3jhv0oxe18" path="res://assets/3.png" id="3_ewrmn"]
+
+[sub_resource type="Gradient" id="Gradient_dj8rg"]
+offsets = PackedFloat32Array(0.0193548, 1)
+colors = PackedColorArray(0, 1, 0, 1, 0, 1, 0.564706, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_07jqj"]
+gradient = SubResource("Gradient_dj8rg")
+
+[sub_resource type="LabelSettings" id="LabelSettings_5g501"]
+font_size = 48
+font_color = Color(0.309804, 0, 1, 1)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qlasu")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_07jqj")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -93.5
+offset_right = 93.5
+offset_bottom = 70.0
+grow_horizontal = 2
+rotation = 0.0139829
+theme_override_constants/margin_top = 70
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+text = "Shrekio!"
+label_settings = SubResource("LabelSettings_5g501")
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = -31.0
+offset_top = 29.0
+offset_right = 768.0
+offset_bottom = 829.0
+rotation = 0.404916
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_nl57x")
+
+[node name="TextureRect2" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 920.0
+offset_top = 59.0
+offset_right = 1719.0
+offset_bottom = 859.0
+rotation = -0.113231
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_lxac5")
+
+[node name="TextureRect3" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 511.0
+offset_top = 318.0
+offset_right = 1310.0
+offset_bottom = 1118.0
+rotation = 0.105201
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_ewrmn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = -125.0
+offset_right = 32.0
+offset_bottom = -59.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Play" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Play"
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Exit
+"
+
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]

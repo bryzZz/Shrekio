@@ -75,6 +75,7 @@ _data = {
 script = ExtResource("1_ov8oe")
 
 [node name="Block" type="Sprite2D" parent="."]
+texture_filter = 1
 texture = ExtResource("2_h8bxf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

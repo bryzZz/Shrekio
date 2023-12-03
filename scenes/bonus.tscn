@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://iy86xaq88g4t"]
+
+[ext_resource type="Script" path="res://scripts/bonus.gd" id="1_srxqb"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1ww2m"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_re2i4"]
+radius = 5.0
+height = 24.0
+
+[sub_resource type="Animation" id="Animation_1n4s4"]
+resource_name = "collect"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 1, 0, 1), Color(0, 1, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ow7tk"]
+_data = {
+"collect": SubResource("Animation_1n4s4")
+}
+
+[node name="Bonus" type="Area2D"]
+script = ExtResource("1_srxqb")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(0, 1, 0, 1)
+texture_filter = 1
+position = Vector2(5.96046e-08, 7.45058e-08)
+rotation = 1.5708
+scale = Vector2(10, 12)
+mesh = SubResource("CapsuleMesh_1ww2m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_re2i4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ow7tk")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

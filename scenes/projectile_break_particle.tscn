@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1qjnoda7kpu3"]
+
+[sub_resource type="Curve" id="Curve_how3w"]
+_data = [Vector2(0.0989011, 0.873684), 0.0, 0.0, 0, 0, Vector2(0.917582, 0.0842105), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_dggg7"]
+offsets = PackedFloat32Array(0.304636, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="ProjectileBreakParticle" type="CPUParticles2D"]
+modulate = Color(0.843137, 0, 0, 1)
+emitting = false
+amount = 10
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 250.0
+scale_amount_min = 5.0
+scale_amount_max = 10.0
+scale_amount_curve = SubResource("Curve_how3w")
+color_ramp = SubResource("Gradient_dggg7")
