@@ -27,7 +27,7 @@ script = ExtResource("1_bm5uj")
 position = Vector2(662, 434)
 
 [node name="MovingPlatform" parent="." instance=ExtResource("3_1kve3")]
-position = Vector2(1810, 819)
+position = Vector2(1961, 377)
 curve = SubResource("Curve2D_epegg")
 loop = false
 
