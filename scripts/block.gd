@@ -1,14 +1,20 @@
+@tool
 class_name Block
 
 extends StaticBody2D
 
-@export var coint_amount = 1
-@export var breakParticle: PackedScene
-
 @onready var collision_shape_2d = $CollisionShape2D as CollisionShape2D
 @onready var animation_player = $AnimationPlayer as AnimationPlayer
 @onready var animation_player2 = $AnimationPlayer2 as AnimationPlayer
+@onready var logs: Array[Sprite2D] = [$Log1, $Log2, $Log3, $Log4]
 
+@export var coint_amount = 1
+@export var breakParticle: PackedScene
+@export var texture: Texture2D = preload("res://assets/log/log1.png"):
+	set(new_texture):
+		texture = new_texture
+		($Sprite2D as Sprite2D).set_texture(texture)
+	
 
 func on_hit(break_me: bool):
 	if break_me:

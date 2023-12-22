@@ -9,6 +9,7 @@ size = Vector2(4, 30)
 script = ExtResource("1_f8vnl")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+visible = false
 position = Vector2(0, -15)
 mesh = SubResource("QuadMesh_syqju")
 

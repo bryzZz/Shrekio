@@ -8,7 +8,8 @@ func _ready():
 	
 func _process(delta):
 	var tween = node.create_tween()
-	var offset = (get_global_mouse_position() / screen_size) * 30
+	var offsetX = (get_global_mouse_position().x / screen_size.x) * 30
+	var offset = Vector2(offsetX, 0)
 	tween.tween_property(node, "position", offset, 1.0)
 
 
@@ -18,3 +19,4 @@ func _on_play_pressed():
 
 func _on_exit_pressed():
 	get_tree().quit()
+

@@ -1,18 +1,71 @@
-[gd_scene load_steps=8 format=3 uid="uid://r0ol0brwp5in"]
+[gd_scene load_steps=15 format=3 uid="uid://r0ol0brwp5in"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_wvld5"]
-[ext_resource type="Texture2D" uid="uid://brgvp3qwgq7xl" path="res://assets/player.png" id="2_ecox2"]
-[ext_resource type="PackedScene" uid="uid://14hlcjs8acga" path="res://scenes/wand.tscn" id="3_gjvx1"]
+[ext_resource type="Texture2D" uid="uid://bdfvk0a6cmnmt" path="res://assets/Shrek/атакует1.png" id="3_84pw8"]
+[ext_resource type="Texture2D" uid="uid://dmv5kpiradp88" path="res://assets/Shrek/атакует2.png" id="4_01a3f"]
+[ext_resource type="Texture2D" uid="uid://cwlmm02u0prfs" path="res://assets/Shrek/атакует3.png" id="5_cjdhe"]
+[ext_resource type="Texture2D" uid="uid://drka8yee3mf01" path="res://assets/Shrek/покой1.png" id="6_xst6f"]
+[ext_resource type="Texture2D" uid="uid://ctrt1qn4rqlo2" path="res://assets/Shrek/покой2.png" id="7_4bn6c"]
+[ext_resource type="Texture2D" uid="uid://ccfsmd4w5fa3c" path="res://assets/Shrek/прыгает.png" id="8_epepg"]
+[ext_resource type="Texture2D" uid="uid://oxnj4yn5g4tt" path="res://assets/Shrek/шагает1.png" id="8_h5pnc"]
+[ext_resource type="Texture2D" uid="uid://cprlejuaeixeh" path="res://assets/Shrek/шагает2.png" id="9_55scw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fwu3h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_84pw8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_01a3f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_cjdhe")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_xst6f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_4bn6c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_epepg")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_h5pnc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_55scw")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6c1o"]
-size = Vector2(42, 72)
+size = Vector2(46, 77)
 
 [sub_resource type="Animation" id="Animation_x2k8k"]
 resource_name = "collect_bonus"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -25,30 +78,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_kcjmq"]
 resource_name = "jump"
 length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0.1, 0.1), Vector2(0.1, 0.13), Vector2(0.1, 0.1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, -20), Vector2(0, 0)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vb27i"]
 _data = {
@@ -59,17 +88,18 @@ _data = {
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_wvld5")
 
-[node name="Sprite" type="Sprite2D" parent="."]
-texture_filter = 1
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_ecox2")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.035, 0.035)
+sprite_frames = SubResource("SpriteFrames_fwu3h")
+animation = &"jump"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
+position = Vector2(-2, -0.5)
 shape = SubResource("RectangleShape2D_p6c1o")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -60)
+limit_left = 0
 limit_top = 0
 limit_bottom = 0
 position_smoothing_enabled = true
@@ -79,8 +109,9 @@ libraries = {
 "": SubResource("AnimationLibrary_vb27i")
 }
 
-[node name="Wand" parent="." instance=ExtResource("3_gjvx1")]
-position = Vector2(33, -24)
-rotation = -0.51088
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(33, -29)
+rotation = -0.505309
 
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

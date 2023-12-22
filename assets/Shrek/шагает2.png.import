@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bryhnikil5pb0"
-path="res://.godot/imported/2.png-f79589217c9a74fd0d3207c8643de526.ctex"
+uid="uid://cprlejuaeixeh"
+path="res://.godot/imported/шагает2.png-e813f9b4420ac5494b8abf961cb0b547.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/2.png"
-dest_files=["res://.godot/imported/2.png-f79589217c9a74fd0d3207c8643de526.ctex"]
+source_file="res://assets/Shrek/шагает2.png"
+dest_files=["res://.godot/imported/шагает2.png-e813f9b4420ac5494b8abf961cb0b547.ctex"]
 
 [params]
 
