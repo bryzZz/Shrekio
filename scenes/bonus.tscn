@@ -1,28 +1,14 @@
 [gd_scene load_steps=6 format=3 uid="uid://iy86xaq88g4t"]
 
 [ext_resource type="Script" path="res://scripts/bonus.gd" id="1_srxqb"]
+[ext_resource type="Texture2D" uid="uid://c2xi42j78mxcb" path="res://assets/360_F_502502074_TzE6zqxJfObneDsYaSJMNvgqvnOvk46q (1)-PhotoRoom.png-PhotoRoom.png" id="2_pxtl1"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_1ww2m"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_re2i4"]
-radius = 5.0
-height = 24.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8a48m"]
+size = Vector2(27, 22)
 
 [sub_resource type="Animation" id="Animation_1n4s4"]
 resource_name = "collect"
 length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 1, 0, 1), Color(0, 1, 0, 0)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ow7tk"]
 _data = {
@@ -32,17 +18,14 @@ _data = {
 [node name="Bonus" type="Area2D"]
 script = ExtResource("1_srxqb")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-modulate = Color(0, 1, 0, 1)
-texture_filter = 1
-position = Vector2(5.96046e-08, 7.45058e-08)
-rotation = 1.5708
-scale = Vector2(10, 12)
-mesh = SubResource("CapsuleMesh_1ww2m")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_pxtl1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3.6637e-06, -0.499998)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_re2i4")
+shape = SubResource("RectangleShape2D_8a48m")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

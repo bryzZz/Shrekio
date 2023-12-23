@@ -24,7 +24,7 @@ point_count = 2
 script = ExtResource("1_bm5uj")
 
 [node name="Player" parent="." instance=ExtResource("1_20n0i")]
-position = Vector2(662, 434)
+position = Vector2(654, 474)
 
 [node name="MovingPlatform" parent="." instance=ExtResource("3_1kve3")]
 position = Vector2(1961, 377)
@@ -54,11 +54,40 @@ coint_amount = 0
 breakParticle = ExtResource("4_ex1lx")
 texture = ExtResource("8_tp1lk")
 
+[node name="Block5" parent="." instance=ExtResource("2_hxmdf")]
+position = Vector2(2530, 325)
+coint_amount = 0
+breakParticle = ExtResource("4_ex1lx")
+
+[node name="Block6" parent="." instance=ExtResource("2_hxmdf")]
+position = Vector2(2594, 325)
+coint_amount = 0
+breakParticle = ExtResource("4_ex1lx")
+texture = ExtResource("6_6mot6")
+
+[node name="Block9" parent="." instance=ExtResource("2_hxmdf")]
+position = Vector2(2658, 325)
+coint_amount = 10
+breakParticle = ExtResource("4_ex1lx")
+texture = ExtResource("6_6mot6")
+
+[node name="Block7" parent="." instance=ExtResource("2_hxmdf")]
+position = Vector2(2721, 325)
+coint_amount = 0
+breakParticle = ExtResource("4_ex1lx")
+texture = ExtResource("7_a1xxb")
+
+[node name="Block8" parent="." instance=ExtResource("2_hxmdf")]
+position = Vector2(2785, 325)
+coint_amount = 0
+breakParticle = ExtResource("4_ex1lx")
+texture = ExtResource("8_tp1lk")
+
 [node name="Enemy" parent="." instance=ExtResource("3_tjm73")]
 position = Vector2(1432, 379)
 
 [node name="Bonus" parent="." instance=ExtResource("5_72ujt")]
-position = Vector2(984, 448)
+position = Vector2(2305, 494)
 
 [node name="Terrain" parent="." instance=ExtResource("13_axme8")]
 position = Vector2(0, 96)
