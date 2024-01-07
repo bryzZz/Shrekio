@@ -2,6 +2,7 @@ class_name Player extends CharacterBody2D
 
 @onready var sprite = $AnimatedSprite2D as AnimatedSprite2D
 @onready var animation_player = $AnimationPlayer as AnimationPlayer
+@onready var camera_animation_player = $CameraAnimationPlayer as AnimationPlayer
 @onready var camera_2d = $Camera2D as Camera2D
 #@onready var wand = $Wand as Wand
 @onready var marker_2d = $Marker2D as Marker2D
@@ -47,6 +48,7 @@ func _physics_process(delta):
 				collider.on_hit()
 			else:
 				queue_free()
+				get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 func walk():
 	if not can_move:
@@ -109,11 +111,9 @@ func hit_by_enemy():
 	print('asd')
 
 func collect_bonus():
-	camera_2d.zoom.x = 1.75
-	camera_2d.zoom.y = 1.75
-	camera_2d.position.y = 0
-	camera_2d.limit_top = -2000
-	camera_2d.limit_bottom = 2000
+#	camera_2d.zoom.x = 1.75
+#	camera_2d.zoom.y = 1.75
+	camera_animation_player.play('zoom_in')
 	animation_player.play('collect_bonus')
 	await get_tree().create_timer(0.2).timeout
 	velocity.x = 0
@@ -136,11 +136,9 @@ func angry_mode_end():
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == 'collect_bonus' and not can_move:
-		camera_2d.zoom.x = 1
-		camera_2d.zoom.y = 1
-		camera_2d.position.y = -60
-		camera_2d.limit_top = 0
-		camera_2d.limit_bottom = 0
+		camera_animation_player.play_backwards('zoom_in')
+#		camera_2d.zoom.x = 1
+#		camera_2d.zoom.y = 1
 		can_move = true
 		await get_tree().create_timer(5).timeout
 		angry_mode_end()

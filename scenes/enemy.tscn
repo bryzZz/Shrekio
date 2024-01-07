@@ -1,17 +1,29 @@
-[gd_scene load_steps=8 format=3 uid="uid://l62ue74f105k"]
+[gd_scene load_steps=11 format=3 uid="uid://l62ue74f105k"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_cvt7w"]
-[ext_resource type="Texture2D" uid="uid://df5lix41n5n2s" path="res://assets/Farquad/покой1.png" id="3_nytgj"]
-[ext_resource type="Texture2D" uid="uid://b7oydo8xfip3a" path="res://assets/Farquad/покой2.png" id="4_06xp4"]
+[ext_resource type="Texture2D" uid="uid://c6uf78f6qm0jn" path="res://assets/pig/pig1.png" id="2_0mqs0"]
+[ext_resource type="Texture2D" uid="uid://r7gu0dto64xg" path="res://assets/pig/pig2.png" id="3_5nu64"]
+[ext_resource type="Texture2D" uid="uid://f34isu0pu8au" path="res://assets/pig/pig3.png" id="4_i1fv7"]
+[ext_resource type="Texture2D" uid="uid://cavj7byns485i" path="res://assets/pig/pig4.png" id="5_1a77y"]
+[ext_resource type="Texture2D" uid="uid://f46wtkrlioll" path="res://assets/pig/pig5.png" id="6_sslrt"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_nx1gk"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_avfac"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_nytgj")
+"texture": ExtResource("2_0mqs0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_06xp4")
+"texture": ExtResource("3_5nu64")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_i1fv7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1a77y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_sslrt")
 }],
 "loop": true,
 "name": &"default",
@@ -19,7 +31,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wksqy"]
-size = Vector2(28, 32)
+size = Vector2(42, 26)
 
 [sub_resource type="Animation" id="Animation_3g2vj"]
 resource_name = "die"
@@ -45,12 +57,11 @@ _data = {
 script = ExtResource("1_cvt7w")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.02, 0.02)
-sprite_frames = SubResource("SpriteFrames_nx1gk")
-frame_progress = 0.0533536
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_avfac")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-5, 0)
+position = Vector2(-1, 2)
 shape = SubResource("RectangleShape2D_wksqy")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -59,9 +70,19 @@ libraries = {
 }
 
 [node name="WallDetectorRight" type="RayCast2D" parent="."]
+position = Vector2(1, 0)
 target_position = Vector2(21, 0)
 
 [node name="WallDetectorLeft" type="RayCast2D" parent="."]
+position = Vector2(-3, 0)
 target_position = Vector2(-21, 0)
+
+[node name="FloorDetectorLeft" type="RayCast2D" parent="."]
+position = Vector2(-23, 2)
+target_position = Vector2(0, 14)
+
+[node name="FloorDetectorRight" type="RayCast2D" parent="."]
+position = Vector2(21, 2)
+target_position = Vector2(0, 14)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
