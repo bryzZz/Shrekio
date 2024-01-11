@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://r0ol0brwp5in"]
+[gd_scene load_steps=19 format=3 uid="uid://r0ol0brwp5in"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_wvld5"]
 [ext_resource type="Texture2D" uid="uid://bdfvk0a6cmnmt" path="res://assets/Shrek/атакует1.png" id="3_84pw8"]
@@ -76,12 +76,8 @@ tracks/0/keys = {
 "values": [Vector2(1, 1), Vector2(1.75, 1.75)]
 }
 
-[sub_resource type="Animation" id="Animation_hquf3"]
-length = 0.001
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0meco"]
 _data = {
-"RESET": SubResource("Animation_hquf3"),
 "zoom_in": SubResource("Animation_ijt0b")
 }
 
@@ -110,7 +106,28 @@ _data = {
 "jump": SubResource("Animation_kcjmq")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="Animation" id="Animation_i8hwt"]
+resource_name = "damage"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1p438"]
+_data = {
+"damage": SubResource("Animation_i8hwt")
+}
+
+[node name="Player" type="CharacterBody2D" groups=["can_take_damage"]]
 script = ExtResource("1_wvld5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -123,7 +140,6 @@ position = Vector2(-2, -0.5)
 shape = SubResource("RectangleShape2D_p6c1o")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-limit_left = 0
 limit_top = -100
 limit_bottom = 1000
 limit_smoothed = true
@@ -142,6 +158,11 @@ libraries = {
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(33, -29)
 rotation = -0.505309
+
+[node name="DamageAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1p438")
+}
 
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

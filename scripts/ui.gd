@@ -7,6 +7,6 @@ var coins_collected = 0
 func _ready():
 	coins_label.set_text('Coins: ' + str(coins_collected))
 
-func collect_coin():
-	coins_collected += 1
+func collect_coin(amount = 1):
+	coins_collected += amount
 	coins_label.set_text('Coins: ' + str(coins_collected))
